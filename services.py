@@ -1,5 +1,5 @@
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 from config import Config
 
 class PasswordHasher:
@@ -17,7 +17,7 @@ class TokenService:
     @staticmethod
     def create_token(user_id: int) -> str:
         payload = {
-            "sub": user_id,
-            "exp": datetime.utcnow() + timedelta(hours=2)
+            "sub": str(user_id),
+            "exp": datetime.now(UTC) + timedelta(hours=2)
         }
         return jwt.encode(payload, Config.SECRET_KEY, algorithm=Config.JWT_ALGORITHM)
