@@ -26,6 +26,7 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest --cov=. --cov-report=term-missing
+        PYTHONPATH=. pytest --cov=. --cov-report=term-missing
+
 
 
